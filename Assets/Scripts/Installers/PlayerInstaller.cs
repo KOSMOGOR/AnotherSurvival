@@ -4,8 +4,9 @@ public class PlayerInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<Player>().FromComponentOn(gameObject).AsSingle();
-        Container.Bind<PlayerMovement>().FromComponentOn(gameObject).AsSingle();
-        Container.Bind<PlayerInput>().FromComponentInChildren().AsSingle();
+        Container.Bind<Player>().FromComponentInParents().AsSingle();
+        Container.Bind<PlayerMovement>().FromComponentInParents().AsSingle();
+
+        Container.Bind<PlayerFacade>().AsSingle();
     }
 }

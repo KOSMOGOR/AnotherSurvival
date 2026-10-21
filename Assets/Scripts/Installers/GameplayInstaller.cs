@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class GameInstaller : MonoInstaller
+public class GameplayInstaller : MonoInstaller
 {
     [SerializeField] Enemy.EnemySettings enemySettings;
     [SerializeField] Enemy enemyPrefab;

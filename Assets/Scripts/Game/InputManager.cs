@@ -2,33 +2,24 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using Zenject;
 
-public class PlayerInput : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
+    [SerializeField] InputActionAsset inputActions;
     [SerializeField] InputActionReference moveAction;
 
-    PlayerInputState inputState;
-
-    PlayerMovement _playerMovement;
-
-    [Inject]
-    public void Construct(PlayerMovement playerMovement)
-    {
-        _playerMovement = playerMovement;
-        inputState = PlayerInputState.CanControl;
-    }
+    PlayerInputState inputState = PlayerInputState.CanControl;
+    public PlayerInputInfo InputInfo { get; private set; }
 
     void Update()
     {
         CheckPlayerInputState();
-        var inputInfo = inputState switch
+        InputInfo = inputState switch
         {
             PlayerInputState.CanControl => InputCanCotrol(),
             PlayerInputState.DoingOther => InputDoingOther(),
             _ => throw new NotImplementedException("This input state is not implemented"),
         };
-        _playerMovement.ProvideInput(inputInfo);
     }
 
     void CheckPlayerInputState()
@@ -47,9 +38,27 @@ public class PlayerInput : MonoBehaviour
         return PlayerInputInfo.Zero;
     }
 
+    public void SwitchToGame() => SetActionScheme("Player");
+    public void SwitchToUI() => SetActionScheme("UI");
+
+    void SetActionScheme(string mapName)
+    {
+        foreach (InputActionMap map in inputActions.actionMaps)
+            if (map.name == mapName) map.Enable();
+            else map.Disable();
+    }
+
     enum PlayerInputState
     {
         CanControl,
         DoingOther
     }
+}
+
+[Serializable]
+public struct PlayerInputInfo
+{
+    public Vector2 moveInput;
+
+    public static PlayerInputInfo Zero => new() { moveInput = Vector2.zero };
 }

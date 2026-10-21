@@ -3,7 +3,7 @@ using Zenject;
 
 public class EnemyTargetGetter
 {
-    [Inject] readonly Player _player;
+    [Inject] readonly PlayerFacade _player;
 
     public Vector2 GetTarget() => _player.Position;
 }

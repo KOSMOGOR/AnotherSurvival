@@ -8,13 +8,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Timer enemySpawn = new(0.3f, false);
     [SerializeField] float enemySpawnIndent = 1f;
 
-    List<Enemy> enemies = new();
+    readonly List<Enemy> enemies = new();
+    bool isRunning = false;
 
     [Inject] readonly Enemy.Factory _enemyFactory;
     [Inject] readonly GameCamera _gameCamera;
 
     void Update()
     {
+        if (!isRunning) return;
         enemySpawn.Update(Time.deltaTime);
         if (enemies.Count < maxEnemies && enemySpawn.IsCompleteAndReset()) SpawnEnemy();
     }
@@ -49,4 +51,6 @@ public class EnemySpawner : MonoBehaviour
         Vector2 point = spawnRect.GetRandomPointInside();
         return point;
     }
+
+    public void SetRunning(bool isRunning) => this.isRunning = isRunning;
 }

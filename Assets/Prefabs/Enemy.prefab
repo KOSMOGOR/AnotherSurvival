@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6271215674879972083}
   - component: {fileID: 4732569832741035683}
   - component: {fileID: 2488060675817886249}
+  - component: {fileID: -5587107547234100958}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -170,3 +171,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   canBeOutOfZone: 5
+--- !u!114 &-5587107547234100958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4693939670740325626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb563ef1cd644a4abdeed03c22d1597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
+  <Damage>k__BackingField: 10
