@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Timer enemySpawn = new(0.3f, false);
     [SerializeField] float enemySpawnIndent = 1f;
 
-    readonly List<Enemy> enemies = new();
+    readonly List<IEnemy> enemies = new();
     bool isRunning = false;
 
     [Inject] readonly Enemy.Factory _enemyFactory;
@@ -26,13 +26,13 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemy = _enemyFactory.Create();
         enemy.transform.position = GetRandomEnemyPosition();
 
-        enemy.onDeath += OnEnemyDeath;
+        enemy.OnDeath += OnEnemyDeath;
         enemies.Add(enemy);
     }
 
-    void OnEnemyDeath(Enemy enemy)
+    void OnEnemyDeath(IDamageable enemy)
     {
-        enemies.Remove(enemy);
+        enemies.Remove(enemy as IEnemy);
     }
 
     Vector2 GetRandomEnemyPosition()

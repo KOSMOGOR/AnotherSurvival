@@ -12,11 +12,11 @@ public class ProjectInstaller : MonoInstaller
 
     void BindGameStateMachine()
     {
-        Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
-
         Container.BindInstance<MainMenuState.Info>(new() { sceneName = "MainMenu" });
         Container.Bind<MainMenuState>().AsSingle();
         Container.BindInstance<GameplayState.Info>(new() { sceneName = "Gameplay" });
         Container.Bind<GameplayState>().AsSingle();
+
+        Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle().NonLazy();
     }
 }

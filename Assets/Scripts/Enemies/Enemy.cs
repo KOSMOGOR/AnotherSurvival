@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy
 {
     [SerializeField] float canBeOutOfZone = 5f;
 
@@ -14,7 +14,13 @@ public class Enemy : MonoBehaviour
 
     float outOfZone = 0f;
 
-    public Action<Enemy> onDeath;
+    public event Action<IDamageable, float> OnTakeDamage;
+    public event Action<IDamageable> OnDeath;
+
+    public Vector2 Position => transform.position;
+    [field: SerializeField] public float MaxHp { get; private set; } = 20f;
+    [field: SerializeField] public float Hp { get; private set; }
+    public bool IsTooLongOutOfZone => outOfZone >= canBeOutOfZone;
 
     [Inject]
     public void Contstruct(EnemySettings settings)
@@ -25,6 +31,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        Hp = MaxHp;
     }
 
     void FixedUpdate()
@@ -48,7 +55,23 @@ public class Enemy : MonoBehaviour
         _rb.linearVelocity = toTarget / Time.fixedDeltaTime;
     }
 
-    public bool IsTooLongOutOfZone => outOfZone >= canBeOutOfZone;
+    public void TakeDamage(float damage)
+    {
+        Hp -= damage;
+        OnTakeDamage?.Invoke(this, damage);
+        if (Hp <= 0) Die();
+    }
+
+    public void Die()
+    {
+        OnDeath?.Invoke(this);
+        Remove();
+    }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
+    }
 
     [Serializable]
     public class EnemySettings

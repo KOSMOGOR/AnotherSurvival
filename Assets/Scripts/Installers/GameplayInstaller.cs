@@ -5,6 +5,7 @@ public class GameplayInstaller : MonoInstaller
 {
     [SerializeField] Enemy.EnemySettings enemySettings;
     [SerializeField] Enemy enemyPrefab;
+    [SerializeField] XpItem xpItemPrefab;
 
     public override void InstallBindings()
     {
@@ -22,9 +23,10 @@ public class GameplayInstaller : MonoInstaller
     {
         Container.BindInstance(enemySettings).AsSingle();
         Container.Bind<EnemyGoodZone>().AsSingle();
-    
         Container.Bind<EnemyTargetGetter>().AsSingle();
         Container.Bind<EnemySpawner>().FromComponentInHierarchy().AsSingle();
         Container.BindFactory<Enemy, Enemy.Factory>().FromComponentInNewPrefab(enemyPrefab);
+
+        Container.BindFactory<XpItem, XpItem.Factory>().FromComponentInNewPrefab(xpItemPrefab);
     }
 }

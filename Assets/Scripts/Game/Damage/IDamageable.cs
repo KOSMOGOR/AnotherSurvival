@@ -2,8 +2,8 @@ using System;
 
 public interface IDamageable
 {
-    public float Hp { get; }
     public float MaxHp { get; }
+    public float Hp { get; }
 
     public void TakeDamage(float damage);
     public void Die();
