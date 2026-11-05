@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f1da0b6abdb7d45aa4315eccab639b, type: 3}
+  m_Name: Idle_Up_animation
+  m_EditorClassIdentifier: Unity.Reanimation::Aarthificial.Reanimation.Nodes.SimpleAnimationNode
+  cels:
+  - sprite: {fileID: 1759218061, guid: 035b5250cef32ff4e8f64db7a35b5d70, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 955466026, guid: 035b5250cef32ff4e8f64db7a35b5d70, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -1168744694, guid: 035b5250cef32ff4e8f64db7a35b5d70, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -989361941, guid: 035b5250cef32ff4e8f64db7a35b5d70, type: 3}
+    drivers:
+      keys: []
+      values: 
+  controlDriver:
+    name: 
+    autoIncrement: 1
+    percentageBased: 0
+    guid: f763d762-3d9d-4756-ae18-7800324a712a
+  drivers:
+    keys: []
+    values: 

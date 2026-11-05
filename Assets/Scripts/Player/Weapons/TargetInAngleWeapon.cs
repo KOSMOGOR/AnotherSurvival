@@ -40,7 +40,7 @@ public class TargetInAngleWeapon : BaseWeapon
         else
             foreach (float angle in AttackAngles)
             {
-                Vector2 dir = _playerFacade.Forward.RotateBy(angle);
+                Vector2 dir = _playerFacade.Forward.RotatedBy(angle);
                 AttackDirection(dir, projectileParams);
             }
     }

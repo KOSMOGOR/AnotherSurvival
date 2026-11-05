@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f1da0b6abdb7d45aa4315eccab639b, type: 3}
+  m_Name: Walking_Up_animation
+  m_EditorClassIdentifier: Unity.Reanimation::Aarthificial.Reanimation.Nodes.SimpleAnimationNode
+  cels:
+  - sprite: {fileID: -160936351, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 162153144, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 962177978, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 1245397152, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -886835370, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -1530203198, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 555892127, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 983159444, guid: f3fff91343c816f4ab1d943db279c3a5, type: 3}
+    drivers:
+      keys: []
+      values: 
+  controlDriver:
+    name: 
+    autoIncrement: 1
+    percentageBased: 0
+    guid: e9b031b6-540a-4794-ba2c-2125bcd686d4
+  drivers:
+    keys: []
+    values: 

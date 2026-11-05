@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b935bc3bfd4944ab93c4a574dfd0da, type: 3}
+  m_Name: root_idle
+  m_EditorClassIdentifier: Unity.Reanimation::Aarthificial.Reanimation.Nodes.SwitchNode
+  nodes:
+  - {fileID: 11400000, guid: 6035a8496965d8c418c9af828d3fbb7d, type: 2}
+  - {fileID: 11400000, guid: 50b1a512734283c49b9bb28df773f2a7, type: 2}
+  - {fileID: 11400000, guid: b734c98ecac7a6d4190369fdf10c6bbc, type: 2}
+  - {fileID: 11400000, guid: 1602ac263d4c17f40a50deae70490e36, type: 2}
+  - {fileID: 11400000, guid: d4f791744e2ebad40b87b8b73c16df8b, type: 2}
+  - {fileID: 11400000, guid: 0c979beff6671f14f8908e18581976d8, type: 2}
+  - {fileID: 11400000, guid: b7c2f3e873b27804781de2b01618571e, type: 2}
+  - {fileID: 11400000, guid: 1b8b0a39119422b4c8371eafdf33647e, type: 2}
+  controlDriver:
+    name: moveDirClock
+    autoIncrement: 0
+    percentageBased: 0
+    guid: 1995f1b7-4ad3-4f62-9efa-3ef232b306d5
+  drivers:
+    keys: []
+    values: 

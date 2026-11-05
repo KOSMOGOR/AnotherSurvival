@@ -21,7 +21,7 @@ public static class VectorRectExtensions
 
     public static Vector2 Add(this Vector2 vec, float? x = null, float? y = null) => new(vec.x + x ?? 0, vec.y + y ?? 0);
 
-    public static Vector2 RotateBy(this Vector2 vec, float angle) => Quaternion.Euler(0, 0, angle) * vec;
+    public static Vector2 RotatedBy(this Vector2 vec, float angle) => Quaternion.Euler(0, 0, angle) * vec;
 
 #endregion
 #region Vector3

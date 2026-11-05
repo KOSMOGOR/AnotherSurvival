@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b935bc3bfd4944ab93c4a574dfd0da, type: 3}
+  m_Name: player_root
+  m_EditorClassIdentifier: Unity.Reanimation::Aarthificial.Reanimation.Nodes.SwitchNode
+  nodes:
+  - {fileID: 11400000, guid: d8aaf61cec810854a926da624ccc6f2b, type: 2}
+  - {fileID: 11400000, guid: 2c636d3bb6aa05f47a14ddc92dad77d2, type: 2}
+  controlDriver:
+    name: isMoving
+    autoIncrement: 0
+    percentageBased: 0
+    guid: 2f35fee8-5d4a-4df6-8190-3f8b06fbc9d5
+  drivers:
+    keys: []
+    values: 

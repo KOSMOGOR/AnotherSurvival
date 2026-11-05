@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f1da0b6abdb7d45aa4315eccab639b, type: 3}
+  m_Name: Walking_DownLeft_animation
+  m_EditorClassIdentifier: Unity.Reanimation::Aarthificial.Reanimation.Nodes.SimpleAnimationNode
+  cels:
+  - sprite: {fileID: 1600869049, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -1958569071, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 1428534957, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -1860601046, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -1421796631, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -97030782, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: 2118325792, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  - sprite: {fileID: -2030732583, guid: f2511312cf6513f40aa669c96c42110a, type: 3}
+    drivers:
+      keys: []
+      values: 
+  controlDriver:
+    name: 
+    autoIncrement: 1
+    percentageBased: 0
+    guid: a42effdc-76ec-45cd-a413-06f953f85c84
+  drivers:
+    keys: []
+    values: 
