@@ -4,6 +4,8 @@ public class PlayerInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
+        Container.Bind<PlayerStats>().FromNewScriptableObjectResource("BasePlayerStats").AsSingle();
+
         Container.Bind<Player>().FromComponentOn(transform.parent.gameObject).AsSingle();
         Container.Bind<PlayerMovement>().FromComponentOn(transform.parent.gameObject).AsSingle();
         Container.Bind<PlayerWeapons>().FromInstance(transform.parent.GetComponentInChildren<PlayerWeapons>()).AsSingle();

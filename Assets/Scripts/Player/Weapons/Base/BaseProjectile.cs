@@ -15,46 +15,48 @@ public class BaseProjectile : MonoBehaviour, IProjectile
         get { return transform.position; }
         set { transform.position = value; }
     }
-    public Vector2 Velocity { get; private set; } = Vector2.right;
+    public Vector2 Direction { get; private set; } = Vector2.right;
+    public Vector2 Velocity => Direction * Speed;
 
-    [Inject] readonly ProjectileParams _projectileParams;
+    [Inject] protected readonly ProjectileParams _projectileParams;
     readonly HashSet<IEnemy> hittedEnemies = new();
 
-    Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         _rb.linearVelocity = Velocity;
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
-        if (hittedEnemies.Count >= Penetration) return;
+        if (Penetration > 0 && hittedEnemies.Count >= Penetration) return;
         if (collider.TryGetComponent(out IEnemy enemy) && !hittedEnemies.Contains(enemy))
         {
-            enemy.TakeDamage(_projectileParams.damage);
+            AffectEnemy(enemy);
             hittedEnemies.Add(enemy);
             if (Penetration > 0 && hittedEnemies.Count >= Penetration) Remove();
         }
     }
+
+    protected virtual void AffectEnemy(IEnemy enemy) => enemy.TakeDamage(_projectileParams.damage);
 
     public void Remove()
     {
         Destroy(gameObject);
     }
 
-    public void SetDirection(Vector2 dir)
-    {
-        Velocity = dir * Speed;
-    }
+    public void SetDirection(Vector2 dir) => Direction = dir.normalized;
 }
 
 public class ProjectileParams
 {
     public float damage;
+    public float area;
+    public float angle;
 }

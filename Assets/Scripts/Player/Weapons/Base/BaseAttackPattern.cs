@@ -7,7 +7,12 @@ public class BaseAttackPattern : MonoBehaviour, IAttackPattern
 
     public ProjectileInfo ProjectileInfo { get; set; }
 
-    public void AttackDirection(Vector2 position, Vector2 direction, ProjectileParams projectileParams)
+    public virtual void AttackDirection(Vector2 position, Vector2 direction, ProjectileParams projectileParams)
+    {
+        SpawnProjectileWithDirection(position, direction, projectileParams);
+    }
+
+    protected virtual void SpawnProjectileWithDirection(Vector2 position, Vector2 direction, ProjectileParams projectileParams)
     {
         IProjectile projectile = _projectileFactory.Create(ProjectileInfo, projectileParams);
         projectile.Position = position;

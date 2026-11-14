@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Zenject;
 
 public class TargetInAngleWeapon : BaseWeapon
 {
@@ -30,7 +29,9 @@ public class TargetInAngleWeapon : BaseWeapon
     {
         ProjectileParams projectileParams = new()
         {
-            damage = WeaponConfig.DamageBase
+            damage = _playerFacade.EvaluateDamage(this),
+            area = _playerFacade.EvaluateArea(this),
+            angle = _playerFacade.EvaluateAngle(this)
         };
         if (RequireTargets)
         {
@@ -53,10 +54,11 @@ public class TargetInAngleWeapon : BaseWeapon
     void GatherTargets()
     {
         targets.Clear();
+        float angle = _playerFacade.EvaluateAngle(this);
         foreach (IEnemy enemy in potentialTargets)
         {
             float enemyAngleFromForward = Vector2.SignedAngle(_playerFacade.Forward, enemy.Position - _playerFacade.Position);
-            if (AttackAngles.Any(attackAngle => Mathf.Abs(attackAngle - enemyAngleFromForward) <= WeaponConfig.AngleBase))
+            if (AttackAngles.Any(attackAngle => Mathf.Abs(attackAngle - enemyAngleFromForward) <= angle))
                 targets.Add(enemy);
         }
     }

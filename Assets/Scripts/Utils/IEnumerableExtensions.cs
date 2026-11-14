@@ -19,4 +19,15 @@ public static class IEnumerableExtensions
         }
         return values.ElementAt(0);
     }
+
+    public static bool TryGet<T>(this IEnumerable<T> values, int i, out T value)
+    {
+        if (i < 0 || i >= values.Count())
+        {
+            value = default;
+            return false;
+        }
+        value = values.ElementAt(i);
+        return true;
+    }
 }

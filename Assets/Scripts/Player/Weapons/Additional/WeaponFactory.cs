@@ -1,4 +1,3 @@
-using UnityEngine;
 using Zenject;
 
 public class WeaponFactory : IFactory<WeaponInfo, IWeapon>
@@ -12,9 +11,7 @@ public class WeaponFactory : IFactory<WeaponInfo, IWeapon>
 
     public IWeapon Create(WeaponInfo weaponInfo)
     {
-        IWeapon weapon = _container.InstantiatePrefabForComponent<IWeapon>(weaponInfo.weaponPrefab);
-        weapon.WeaponConfig = weaponInfo.weaponConfig;
-        return weapon;
+        return _container.InstantiatePrefabForComponent<BaseWeapon>(weaponInfo.weaponPrefab, new[] { weaponInfo.weaponConfig });
     }
 
     public class Factory : PlaceholderFactory<WeaponInfo, IWeapon> {}

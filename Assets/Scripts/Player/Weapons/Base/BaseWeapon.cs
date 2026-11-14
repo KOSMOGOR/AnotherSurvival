@@ -3,7 +3,7 @@ using Zenject;
 
 public abstract class BaseWeapon : MonoBehaviour, IWeapon
 {
-    [field: SerializeField] public WeaponConfig WeaponConfig { get; set; }
+    [Inject] public WeaponConfig WeaponConfig { get; private set; }
     [field: SerializeField, Inject] protected IAttackPattern _attackPattern;
 
     public int Level { get; private set; } = 1;
@@ -13,7 +13,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
 
     protected virtual void Start()
     {
-        reloadTimer = new(WeaponConfig.ReloadBase);
+        reloadTimer = new(_playerFacade.EvaluateReload(this));
     }
 
     public virtual void OnUpdate(float deltaTime)
@@ -22,6 +22,7 @@ public abstract class BaseWeapon : MonoBehaviour, IWeapon
         if (reloadTimer.IsComplete && CanAttack())
         {
             reloadTimer.Reset();
+            reloadTimer.SetMaxTime(_playerFacade.EvaluateReload(this));
             Attack();
         }
     }

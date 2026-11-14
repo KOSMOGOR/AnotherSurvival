@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_inputInfo.moveInput.sqrMagnitude > 0) Forward = _inputInfo.moveInput;
+        if (_inputInfo.moveInput.sqrMagnitude > 0) Forward = _inputInfo.moveInput.normalized;
 
         Vector2 targetVelocity = _inputInfo.moveInput * speed;
         rb.linearVelocity = targetVelocity;

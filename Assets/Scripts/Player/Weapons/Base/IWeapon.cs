@@ -1,6 +1,6 @@
 public interface IWeapon
 {
-    WeaponConfig WeaponConfig { get; set; }
+    WeaponConfig WeaponConfig { get; }
 
     void OnUpdate(float deltaTime);
 }
