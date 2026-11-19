@@ -31,9 +31,8 @@ public class Timer : ICloneable
     /// </summary>
     public void Update(float deltaTime)
     {
-        CurrentTime += deltaTime;
+        if (CanOvercount || (deltaTime > 0f && CurrentTime < MaxTime)) CurrentTime += deltaTime;
         if (CurrentTime < 0f) CurrentTime = 0f;
-        else if (!CanOvercount && CurrentTime > MaxTime) CurrentTime = MaxTime;
     }
 
     /// <summary>
@@ -42,7 +41,7 @@ public class Timer : ICloneable
     /// <param name="toZero"> If set to false and timer overcounted, then just subtracts <see cref="MaxTime"/>. </param>
     public void Reset(bool toZero = true)
     {
-        if (IsIncomplete || toZero || !CanOvercount) CurrentTime = 0f;
+        if (IsIncomplete || toZero || CanOvercount) CurrentTime = 0f;
         else CurrentTime -= MaxTime;
     }
 

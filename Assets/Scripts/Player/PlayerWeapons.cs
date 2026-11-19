@@ -10,7 +10,7 @@ public class PlayerWeapons : MonoBehaviour
     [Inject] readonly Player _player;
 
     readonly Dictionary<WeaponInfo, WeaponRuntimeInfo> weaponRuntimeInfos = new();
-    readonly List<ItemRuntimeInfo> itemRuntimeInfos = new();
+    readonly Dictionary<Item, ItemRuntimeInfo> itemRuntimeInfos = new();
 
     void FixedUpdate()
     {
@@ -36,20 +36,17 @@ public class PlayerWeapons : MonoBehaviour
         if (weaponRuntimeInfos.TryGetValue(weaponInfo, out WeaponRuntimeInfo wri)) wri.level += 1;
     }
 
+    public bool HasItem(Item item) => itemRuntimeInfos.ContainsKey(item);
+
     public void AddItem(Item item)
     {
-        itemRuntimeInfos.Add(new()
-        {
-            item = item,
-            level = 1
-        });
+        itemRuntimeInfos.Add(item, new() { level = 1 });
         EvaluateHealthStats();
     }
 
     public void UpgradeItem(Item item)
     {
-        ItemRuntimeInfo itemRuntimeInfo = itemRuntimeInfos.Find(iri => iri.item == item);
-        if (itemRuntimeInfo != null) itemRuntimeInfo.level += 1;
+        if (itemRuntimeInfos.TryGetValue(item, out ItemRuntimeInfo iri)) iri.level += 1;
         EvaluateHealthStats();
     }
 
@@ -76,8 +73,8 @@ public class PlayerWeapons : MonoBehaviour
 
     public float EvaluateItemsStat(float baseStat, Func<Item.PerLevelStats, float, float> itemStatApplier)
     {
-        foreach (ItemRuntimeInfo itemRuntimeInfo in itemRuntimeInfos)
-            for (int i = 0; i < itemRuntimeInfo.level; i++) baseStat = itemStatApplier.Invoke(itemRuntimeInfo.item.LevelStats, baseStat);
+        foreach (KeyValuePair<Item, ItemRuntimeInfo> keyValue in itemRuntimeInfos)
+            for (int i = 0; i < keyValue.Value.level; i++) baseStat = itemStatApplier.Invoke(keyValue.Key.LevelStats, baseStat);
         return baseStat;
     }
 
@@ -87,7 +84,7 @@ public class PlayerWeapons : MonoBehaviour
         Func<Item.PerLevelStats, float, float> itemStatApplier)
     {
         float stat = EvaluateWeaponStat(weaponConfig, baseStatGetter, statPerLevelApplier);
-        stat = EvaluateItemsStat(stat, itemStatApplier);
+        if (itemStatApplier != null) stat = EvaluateItemsStat(stat, itemStatApplier);
         return stat;
     }
 
@@ -107,7 +104,7 @@ public class PlayerWeapons : MonoBehaviour
 
     class ItemRuntimeInfo
     {
-        public Item item;
+        // public Item item;
         public int level;
     }
 }

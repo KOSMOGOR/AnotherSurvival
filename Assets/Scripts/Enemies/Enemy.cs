@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour, IEnemy
         Vector2 target = _enemyTargetGetter.GetTarget();
         Vector2 toTarget = target - (Vector2)transform.position;
         float maxSpeedDt = _settings.speed * Time.fixedDeltaTime;
-        if (toTarget.magnitude > maxSpeedDt) toTarget = toTarget.normalized * maxSpeedDt;
+        if (toTarget.magnitude > maxSpeedDt) toTarget = toTarget.WithLength(maxSpeedDt);
         _rb.linearVelocity = toTarget / Time.fixedDeltaTime;
     }
 

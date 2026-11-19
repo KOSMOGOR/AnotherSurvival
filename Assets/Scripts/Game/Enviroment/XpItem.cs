@@ -19,7 +19,7 @@ public class XpItem : MonoBehaviour
     void FixedUpdate()
     {
         _rb.linearVelocity = _pullsTo
-            ? (_pullsTo.position - transform.position).normalized * PullSpeed
+            ? (_pullsTo.position - transform.position).WithLength(PullSpeed)
             : Vector2.zero;
 
     }

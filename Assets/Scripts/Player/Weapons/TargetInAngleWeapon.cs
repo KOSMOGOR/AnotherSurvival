@@ -6,10 +6,13 @@ public class TargetInAngleWeapon : BaseWeapon
 {
     [Tooltip("Offsets from player's forward direction")]
     [field: SerializeField] public float[] AttackAngles { get; private set; } = { 0 };
-    [field: SerializeField] public bool RequireTargets { get; private set; } = false;
+    [field: SerializeField] public AttackTypeEnum AttackType { get; private set; } = AttackTypeEnum.AttackDirectlyEnemy;
+
+    bool RequireTargets => AttackType != AttackTypeEnum.AttackAllAngles;
 
     protected HashSet<IEnemy> potentialTargets = new();
-    protected List<IEnemy> targets = new();
+    protected List<List<IEnemy>> targetsInAngle = new();
+    int TargetsCount => targetsInAngle.Sum(t => t.Count);
 
     protected override void Start()
     {
@@ -23,7 +26,7 @@ public class TargetInAngleWeapon : BaseWeapon
         base.OnUpdate(deltaTime);
     }
 
-    protected override bool CanAttack() => !RequireTargets || targets.Count > 0;
+    protected override bool CanAttack() => !RequireTargets || TargetsCount > 0;
 
     protected override void Attack()
     {
@@ -33,13 +36,16 @@ public class TargetInAngleWeapon : BaseWeapon
             area = _playerFacade.EvaluateArea(this),
             angle = _playerFacade.EvaluateAngle(this)
         };
-        if (RequireTargets)
+        if (AttackType == AttackTypeEnum.AttackDirectlyEnemy)
         {
-            Vector2 closestPos = targets.Select(enemy => PosToDir(enemy.Position)).OrderBy(x => x.sqrMagnitude).First();
-            AttackDirection(closestPos, projectileParams);
+            for (int i = 0; i < AttackAngles.Length; i++)
+                if (targetsInAngle[i].Count > 0)
+                {
+                    Vector2 closestPos = targetsInAngle[i].Select(enemy => PosToDir(enemy.Position)).OrderBy(x => x.sqrMagnitude).First();
+                    AttackDirection(closestPos, projectileParams);
+                }
         }
-        else
-            foreach (float angle in AttackAngles)
+        else foreach (float angle in AttackAngles)
             {
                 Vector2 dir = _playerFacade.Forward.RotatedBy(angle);
                 AttackDirection(dir, projectileParams);
@@ -53,13 +59,14 @@ public class TargetInAngleWeapon : BaseWeapon
 
     void GatherTargets()
     {
-        targets.Clear();
+        EnsureLength(targetsInAngle, AttackAngles.Length);
+        foreach (List<IEnemy> angleTargets in targetsInAngle) angleTargets.Clear();
         float angle = _playerFacade.EvaluateAngle(this);
         foreach (IEnemy enemy in potentialTargets)
         {
             float enemyAngleFromForward = Vector2.SignedAngle(_playerFacade.Forward, enemy.Position - _playerFacade.Position);
-            if (AttackAngles.Any(attackAngle => Mathf.Abs(attackAngle - enemyAngleFromForward) <= angle))
-                targets.Add(enemy);
+            for (int i = 0; i < AttackAngles.Length; i++)
+                if (Mathf.Abs(AttackAngles[i] - enemyAngleFromForward) <= angle) targetsInAngle[i].Add(enemy);
         }
     }
 
@@ -71,5 +78,18 @@ public class TargetInAngleWeapon : BaseWeapon
     protected override void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.TryGetComponent(out IEnemy enemy)) potentialTargets.Remove(enemy);
+    }
+
+    void EnsureLength<T>(List<List<T>> values, int length)
+    {
+        if (values.Count > length) values.RemoveRange(length, values.Count - length);
+        while (values.Count < length) values.Add(new());
+    }
+
+    public enum AttackTypeEnum
+    {
+        AttackAllAngles,
+        AttackAllAnglesIfHasEnemy,
+        AttackDirectlyEnemy
     }
 }

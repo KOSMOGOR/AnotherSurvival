@@ -9,29 +9,52 @@ public class BaseProjectile : MonoBehaviour, IProjectile
     [field: SerializeField] public float TimeToLive { get; private set; } = 3f;
     [field: SerializeField] public float Speed { get; private set; } = 2f;
     [field: SerializeField] public int Penetration { get; private set; } = 1;
+    [SerializeField] bool fixedSize = false;
 
     public Vector2 Position
     {
         get { return transform.position; }
-        set { transform.position = value; }
+        set
+        {
+            transform.position = value;
+            _rb.position = value;
+        }
     }
     public Vector2 Direction { get; private set; } = Vector2.right;
     public Vector2 Velocity => Direction * Speed;
 
-    [Inject] protected readonly ProjectileParams _projectileParams;
+    protected ProjectileParams _projectileParams;
     readonly HashSet<IEnemy> hittedEnemies = new();
+    protected float timeExists = 0f;
 
     protected Rigidbody2D _rb;
+
+    [Inject]
+    public void Construct(ProjectileParams projectileParams)
+    {
+        _projectileParams = projectileParams;
+        if (!fixedSize) transform.localScale = new(projectileParams.area, projectileParams.area, projectileParams.area);
+    }
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
+    protected virtual void Update()
+    {
+        if (timeExists <= TimeToLive) timeExists = Mathf.Min(timeExists + Time.deltaTime, TimeToLive);
+        if (TimeToLiveExpired) Remove();
+    }
+
+    public virtual bool TimeToLiveExpired => timeExists >= TimeToLive;
+
     protected virtual void FixedUpdate()
     {
-        _rb.linearVelocity = Velocity;
+        _rb.linearVelocity = CurrentVelocity;
     }
+
+    protected virtual Vector2 CurrentVelocity => Velocity;
 
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {

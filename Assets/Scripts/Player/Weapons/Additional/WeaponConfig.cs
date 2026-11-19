@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponConfig", menuName = "AnotherSurvival/WeaponConfig")]
+[CreateAssetMenu(fileName = "WeaponConfig", menuName = "AnotherSurvival/Weapons/WeaponConfig", order = -100)]
 public class WeaponConfig : ScriptableObject
 {
     [field: SerializeField] public string Id { get; private set; }
@@ -15,6 +16,7 @@ public class WeaponConfig : ScriptableObject
     [field: SerializeField] public float ReloadBase { get; private set; } = 1f;
     [field: SerializeField] public float AreaBase { get; private set; } = 1f;
     [field: SerializeField] public float AngleBase { get; private set; } = 90f;
+    [field: SerializeField, SerializedDictionary("Stat Name", "Base Stat Value")] public SerializedDictionary<string, float> AdditionalStats { get; private set; } = new();
 
     [field: SerializeField] public List<LevelConfig> LevelConfigs { get; private set; } = new();
 
@@ -30,5 +32,6 @@ public class WeaponConfig : ScriptableObject
         [field: SerializeField] public float ReloadDelta { get; private set; }
         [field: SerializeField] public float AreaDelta { get; private set; }
         [field: SerializeField] public float AngleDelta { get; private set; }
+        [field: SerializeField, SerializedDictionary("Stat Name", "Stat Delta")] public SerializedDictionary<string, float> AdditionalStats { get; private set; } = new();
     }
 }

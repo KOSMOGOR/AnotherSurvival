@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "AnotherSurvival/Item")]
+[CreateAssetMenu(fileName = "Item", menuName = "AnotherSurvival/Item", order = -100)]
 public class Item : ScriptableObject
 {
     [field: SerializeField] public PerLevelStats LevelStats { get; private set; }

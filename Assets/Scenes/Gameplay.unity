@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88065dd65ff622f478b4c263a1f59fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugWeapons
-  testWeaponInfo: {fileID: 11400000, guid: de32d203ff5c1ac49b46c9356dbf1fa8, type: 2}
+  weapons: []
 --- !u!4 &99484380
 Transform:
   m_ObjectHideFlags: 0
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   <Hp>k__BackingField: 0
   <MaxHp>k__BackingField: 0
+  <HpRegen>k__BackingField: 1
   <InvularabilityAfterDamage>k__BackingField:
     <MaxTime>k__BackingField: 1
     <CanOvercount>k__BackingField: 0
