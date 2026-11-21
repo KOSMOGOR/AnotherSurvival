@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5317cb2ea5d42de44865d41902ad6c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultishotAttackPattern
-  multishotCount: 10
+  projectileCountBase: 10
   multishotAngle: 90
   useProjectileAngle: 1
   delayBetweenShots: 0

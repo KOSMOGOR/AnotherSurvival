@@ -30,12 +30,7 @@ public class TargetInAngleWeapon : BaseWeapon
 
     protected override void Attack()
     {
-        ProjectileParams projectileParams = new()
-        {
-            damage = _playerFacade.EvaluateDamage(this),
-            area = _playerFacade.EvaluateArea(this),
-            angle = _playerFacade.EvaluateAngle(this)
-        };
+        ProjectileParams projectileParams = GetProjectileParams();
         if (AttackType == AttackTypeEnum.AttackDirectlyEnemy)
         {
             for (int i = 0; i < AttackAngles.Length; i++)
@@ -84,6 +79,19 @@ public class TargetInAngleWeapon : BaseWeapon
     {
         if (values.Count > length) values.RemoveRange(length, values.Count - length);
         while (values.Count < length) values.Add(new());
+    }
+
+    protected ProjectileParams GetProjectileParams()
+    {
+        ProjectileParams projectileParams = new()
+        {
+            damage = _playerFacade.EvaluateDamage(this),
+            area = _playerFacade.EvaluateArea(this),
+            angle = _playerFacade.EvaluateAngle(this)
+        };
+        foreach (KeyValuePair<string, float> additionalStat in WeaponConfig.AdditionalStats)
+            projectileParams.WithAddStat(additionalStat.Key, additionalStat.Value);
+        return projectileParams;
     }
 
     public enum AttackTypeEnum

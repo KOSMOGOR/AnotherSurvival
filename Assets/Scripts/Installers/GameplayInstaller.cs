@@ -17,6 +17,7 @@ public class GameplayInstaller : MonoInstaller
     {
         Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
         Container.Bind<GameCamera>().FromComponentInHierarchy().AsSingle();
+        Container.Bind<GameConfig>().FromNewScriptableObjectResource("GameConfig").AsSingle();
     }
 
     void InstallEnemies()

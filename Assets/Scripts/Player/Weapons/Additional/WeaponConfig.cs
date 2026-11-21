@@ -22,6 +22,8 @@ public class WeaponConfig : ScriptableObject
 
     [field: SerializeField] public ProjectileInfo ProjectileInfo { get; private set; }
 
+    public int MaxLevel => 1 + LevelConfigs.Count;
+
     [Serializable]
     public class LevelConfig
     {

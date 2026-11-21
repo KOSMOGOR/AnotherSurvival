@@ -31,5 +31,51 @@ MonoBehaviour:
       Value: 0.5
     - Key: petrify_duration
       Value: 0
-  <LevelConfigs>k__BackingField: []
+  <LevelConfigs>k__BackingField:
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: -0.5
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 10
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 70
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 1.5
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 10
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: slow_duration
+        Value: 0.5
+      - Key: petrify_duration
+        Value: 0.5
   <ProjectileInfo>k__BackingField: {fileID: 0}

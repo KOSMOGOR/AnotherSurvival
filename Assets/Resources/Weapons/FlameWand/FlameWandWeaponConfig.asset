@@ -25,6 +25,54 @@ MonoBehaviour:
   <AreaBase>k__BackingField: 1.2
   <AngleBase>k__BackingField: 60
   <AdditionalStats>k__BackingField:
-    _serializedList: []
-  <LevelConfigs>k__BackingField: []
+    _serializedList:
+    - Key: projectile_count
+      Value: 3
+  <LevelConfigs>k__BackingField:
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 4
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: -0.5
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: projectile_count
+        Value: 2
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: -0.5
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 8
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 1
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: penetration
+        Value: 20
   <ProjectileInfo>k__BackingField: {fileID: 11400000, guid: 14ef40165fe0aec41b7354518cae4f59, type: 2}

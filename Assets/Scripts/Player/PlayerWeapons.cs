@@ -8,6 +8,7 @@ public class PlayerWeapons : MonoBehaviour
 {
     [Inject] readonly WeaponFactory.Factory _weaponFactory;
     [Inject] readonly Player _player;
+    [Inject] readonly GameConfig _gameConfig;
 
     readonly Dictionary<WeaponInfo, WeaponRuntimeInfo> weaponRuntimeInfos = new();
     readonly Dictionary<Item, ItemRuntimeInfo> itemRuntimeInfos = new();
@@ -33,7 +34,7 @@ public class PlayerWeapons : MonoBehaviour
 
     public void UpgradeWeapon(WeaponInfo weaponInfo)
     {
-        if (weaponRuntimeInfos.TryGetValue(weaponInfo, out WeaponRuntimeInfo wri)) wri.level += 1;
+        if (weaponRuntimeInfos.TryGetValue(weaponInfo, out WeaponRuntimeInfo wri) && wri.level < weaponInfo.weaponConfig.MaxLevel) wri.level += 1;
     }
 
     public bool HasItem(Item item) => itemRuntimeInfos.ContainsKey(item);
@@ -46,7 +47,7 @@ public class PlayerWeapons : MonoBehaviour
 
     public void UpgradeItem(Item item)
     {
-        if (itemRuntimeInfos.TryGetValue(item, out ItemRuntimeInfo iri)) iri.level += 1;
+        if (itemRuntimeInfos.TryGetValue(item, out ItemRuntimeInfo iri) && iri.level < _gameConfig.maxItemLevel) iri.level += 1;
         EvaluateHealthStats();
     }
 

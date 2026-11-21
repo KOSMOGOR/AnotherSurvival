@@ -10,7 +10,7 @@ public class Item : ScriptableObject
         public float maxHealth;
         public float healthRegen;
         public float damage;
-        public float reloadPercent;
+        public float reload;
         public float area;
         public float angle;
         public float xp;

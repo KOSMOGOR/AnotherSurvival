@@ -24,6 +24,56 @@ MonoBehaviour:
   <AreaBase>k__BackingField: 0.2
   <AngleBase>k__BackingField: 90
   <AdditionalStats>k__BackingField:
-    _serializedList: []
-  <LevelConfigs>k__BackingField: []
+    _serializedList:
+    - Key: projectile_count
+      Value: 10
+  <LevelConfigs>k__BackingField:
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: -0.8
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 2
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: penetration
+        Value: 2
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 3
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 50
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: projectile_count
+        Value: 10
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: penetration
+        Value: 18
   <ProjectileInfo>k__BackingField: {fileID: 11400000, guid: f41ddee9a6c0a464daec200c7b6836e8, type: 2}

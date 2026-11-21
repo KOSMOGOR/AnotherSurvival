@@ -25,6 +25,62 @@ MonoBehaviour:
   <AreaBase>k__BackingField: 4
   <AngleBase>k__BackingField: 10
   <AdditionalStats>k__BackingField:
-    _serializedList: []
-  <LevelConfigs>k__BackingField: []
+    _serializedList:
+    - Key: laser_count
+      Value: 1
+    - Key: growth_speed
+      Value: 1
+    - Key: pull_radius
+      Value: 1
+    - Key: pull_speed
+      Value: 0.2
+  <LevelConfigs>k__BackingField:
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 2
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: pull_speed
+        Value: 0.4
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: laser_count
+        Value: 1
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 8
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 1
+    <AngleDelta>k__BackingField: 15
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList:
+      - Key: laser_count
+        Value: 2
   <ProjectileInfo>k__BackingField: {fileID: 11400000, guid: 82a78c334a19a1d43857d0b10a635451, type: 2}

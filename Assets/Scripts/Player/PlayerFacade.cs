@@ -34,9 +34,7 @@ public class PlayerFacade : MonoBehaviour
     }
 
     public float EvaluateDamage(BaseWeapon weapon) => _playerWeapons.EvaluateFullStat(weapon.WeaponConfig, wc => wc.DamageBase, (lc, stat) => stat + lc.DamageDelta, (pls, stat) => stat + pls.damage);
-    public float EvaluateReload(BaseWeapon weapon) => _playerWeapons.EvaluateFullStat(weapon.WeaponConfig, wc => wc.ReloadBase,
-        (lc, stat) => lc.ReloadDelta > 0f ? stat * lc.ReloadDelta : stat,
-        (pls, stat) => pls.reloadPercent > 0f ? stat + pls.reloadPercent : stat);
+    public float EvaluateReload(BaseWeapon weapon) => _playerWeapons.EvaluateFullStat(weapon.WeaponConfig, wc => wc.ReloadBase, (lc, stat) => stat + lc.ReloadDelta, (pls, stat) => stat + pls.reload);
     public float EvaluateArea(BaseWeapon weapon) => _playerWeapons.EvaluateFullStat(weapon.WeaponConfig, wc => wc.AreaBase, (lc, stat) => stat + lc.AreaDelta, (pls, stat) => stat + pls.area);
     public float EvaluateAngle(BaseWeapon weapon) => _playerWeapons.EvaluateFullStat(weapon.WeaponConfig, wc => wc.AngleBase, (lc, stat) => stat + lc.AngleDelta, (pls, stat) => stat + pls.angle);
     public float EvaluateAdditionalStat(BaseWeapon weapon, string statName) => _playerWeapons.EvaluateFullStat(weapon.WeaponConfig, wc => wc.AdditionalStats.GetValueOrDefault(statName, 0f), (lc, stat) => stat + lc.AdditionalStats.GetValueOrDefault(statName, 0f), null);

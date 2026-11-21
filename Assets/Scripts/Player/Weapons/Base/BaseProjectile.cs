@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -34,12 +35,16 @@ public class BaseProjectile : MonoBehaviour, IProjectile
     {
         _projectileParams = projectileParams;
         if (!fixedSize) transform.localScale = new(projectileParams.area, projectileParams.area, projectileParams.area);
+        int penetration = (int)projectileParams.EvaluateStat(AdditionalStats.PENETRATION);
+        if (Penetration != 0) Penetration = penetration;
     }
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
+
+    protected virtual void Start() {}
 
     protected virtual void Update()
     {
@@ -82,4 +87,24 @@ public class ProjectileParams
     public float damage;
     public float area;
     public float angle;
+
+    public Dictionary<string, Func<float, float>> additionalStats = new();
+
+    public ProjectileParams WithStat(string statName, Func<float, float> statApplier)
+    {
+        additionalStats[statName] = statApplier;
+        return this;
+    }
+
+    public ProjectileParams WithAddStat(string statName, float addToStat)
+    {
+        return WithStat(statName, stat => stat + addToStat);
+    }
+
+    public float EvaluateStat(string statName) => EvaluateStat(statName, 0f);
+    public float EvaluateStat(string statName, float stat)
+    {
+        if (additionalStats.TryGetValue(statName, out Func<float, float> statApplier)) return statApplier.Invoke(stat);
+        return stat;
+    }
 }

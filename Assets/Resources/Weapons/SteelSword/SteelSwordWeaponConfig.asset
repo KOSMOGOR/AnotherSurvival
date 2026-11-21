@@ -25,5 +25,47 @@ MonoBehaviour:
   <AngleBase>k__BackingField: 120
   <AdditionalStats>k__BackingField:
     _serializedList: []
-  <LevelConfigs>k__BackingField: []
+  <LevelConfigs>k__BackingField:
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: -0.5
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 15
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 60
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 30
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 1
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: -1
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 0
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
+  - <AdditionalDescription>k__BackingField: 
+    <DamageDelta>k__BackingField: 0
+    <ReloadDelta>k__BackingField: 0
+    <AreaDelta>k__BackingField: 0
+    <AngleDelta>k__BackingField: 180
+    <AdditionalStats>k__BackingField:
+      _serializedList: []
   <ProjectileInfo>k__BackingField: {fileID: 11400000, guid: d68c62193507b1740a9b81d3d143796a, type: 2}
