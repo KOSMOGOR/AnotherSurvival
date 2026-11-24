@@ -12,6 +12,11 @@ public class TargetInAngleWeapon : BaseWeapon
 
     protected HashSet<IEnemy> potentialTargets = new();
     protected List<List<IEnemy>> targetsInAngle = new();
+    public IEnumerable<IEnemy> Targets { get
+    {
+        foreach (List<IEnemy> enemies in targetsInAngle)
+            foreach (IEnemy enemy in enemies) yield return enemy;
+    } }
     int TargetsCount => targetsInAngle.Sum(t => t.Count);
 
     protected override void Start()
@@ -41,10 +46,10 @@ public class TargetInAngleWeapon : BaseWeapon
                 }
         }
         else foreach (float angle in AttackAngles)
-            {
-                Vector2 dir = _playerFacade.Forward.RotatedBy(angle);
-                AttackDirection(dir, projectileParams);
-            }
+        {
+            Vector2 dir = _playerFacade.Forward.RotatedBy(angle);
+            AttackDirection(dir, projectileParams);
+        }
     }
 
     protected virtual void AttackDirection(Vector2 direction, ProjectileParams projectileParams)
@@ -61,7 +66,7 @@ public class TargetInAngleWeapon : BaseWeapon
         {
             float enemyAngleFromForward = Vector2.SignedAngle(_playerFacade.Forward, enemy.Position - _playerFacade.Position);
             for (int i = 0; i < AttackAngles.Length; i++)
-                if (Mathf.Abs(AttackAngles[i] - enemyAngleFromForward) <= angle) targetsInAngle[i].Add(enemy);
+                if (Mathf.Abs(Mathf.DeltaAngle(AttackAngles[i], enemyAngleFromForward)) <= angle) targetsInAngle[i].Add(enemy);
         }
     }
 
@@ -90,7 +95,7 @@ public class TargetInAngleWeapon : BaseWeapon
             angle = _playerFacade.EvaluateAngle(this)
         };
         foreach (KeyValuePair<string, float> additionalStat in WeaponConfig.AdditionalStats)
-            projectileParams.WithAddStat(additionalStat.Key, additionalStat.Value);
+            projectileParams.WithAddStat(additionalStat.Key, _playerFacade.EvaluateAdditionalStat(this, additionalStat.Key));
         return projectileParams;
     }
 

@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, IEnemy
     public event Action<IDamageable, float> OnTakeDamage;
     public event Action<IDamageable> OnDeath;
 
-    public Vector2 Position => transform.position;
+    public Vector2 Position => this != null ? transform.position : Vector2.zero;
     [field: SerializeField] public float MaxHp { get; private set; } = 20f;
     [field: SerializeField] public float Hp { get; private set; }
     public bool IsTooLongOutOfZone => outOfZone >= canBeOutOfZone;

@@ -19,22 +19,30 @@ public class Player : MonoBehaviour, IDamageable
     public event Action<IDamageable> OnDeath;
     public event Action OnNewLevel;
 
-    public PlayerStats _playerStats { get; private set; }
+    public PlayerStats PlayerStats { get; private set; }
 
     [Inject]
     public void Construct(PlayerStats playerStats)
     {
-        _playerStats = playerStats;
-        MaxHp = _playerStats.maxHp;
+        PlayerStats = playerStats;
+        MaxHp = PlayerStats.maxHp;
         Hp = MaxHp;
-        HpRegen = _playerStats.hpRegen;
+        HpRegen = PlayerStats.hpRegen;
+    }
+
+    void Update()
+    {
+        InvularabilityAfterDamage.Update(Time.deltaTime);
     }
 
     public void TakeDamage(float damage)
     {
-        Hp -= damage;
-        OnTakeDamage?.Invoke(this, damage);
-        if (Hp <= 0) Die();
+        if (InvularabilityAfterDamage.IsCompleteAndReset())
+        {
+            Hp -= damage;
+            OnTakeDamage?.Invoke(this, damage);
+            if (Hp <= 0) Die();
+        }
     }
 
     public void Die()

@@ -11,6 +11,7 @@ public class PlayerWeapons : MonoBehaviour
     [Inject] readonly GameConfig _gameConfig;
 
     readonly Dictionary<WeaponInfo, WeaponRuntimeInfo> weaponRuntimeInfos = new();
+    public IEnumerable<WeaponRuntimeInfo> WeaponRuntimeInfos { get { foreach (WeaponRuntimeInfo wri in weaponRuntimeInfos.Values) yield return wri; } }
     readonly Dictionary<Item, ItemRuntimeInfo> itemRuntimeInfos = new();
 
     void FixedUpdate()
@@ -66,7 +67,7 @@ public class PlayerWeapons : MonoBehaviour
         Func<WeaponConfig.LevelConfig, float, float> statPerLevelApplier)
     {
         float stat = baseStatGetter.Invoke(weaponConfig);
-        for (int i = 0; i <= level - 1; i++)
+        for (int i = 0; i < level - 1; i++)
             if (weaponConfig.LevelConfigs.TryGet(i, out WeaponConfig.LevelConfig levelConfig)) stat = statPerLevelApplier.Invoke(levelConfig, stat);
             else break;
         return stat;
@@ -75,7 +76,10 @@ public class PlayerWeapons : MonoBehaviour
     public float EvaluateItemsStat(float baseStat, Func<Item.PerLevelStats, float, float> itemStatApplier)
     {
         foreach (KeyValuePair<Item, ItemRuntimeInfo> keyValue in itemRuntimeInfos)
-            for (int i = 0; i < keyValue.Value.level; i++) baseStat = itemStatApplier.Invoke(keyValue.Key.LevelStats, baseStat);
+        {
+            baseStat += itemStatApplier.Invoke(keyValue.Key.BaseStats, baseStat);
+            for (int i = 1; i < keyValue.Value.level; i++) baseStat = itemStatApplier.Invoke(keyValue.Key.DeltaStats, baseStat);
+        }
         return baseStat;
     }
 
@@ -91,12 +95,12 @@ public class PlayerWeapons : MonoBehaviour
 
     void EvaluateHealthStats()
     {
-        float maxHp = EvaluateItemsStat(_player._playerStats.maxHp, (pls, stat) => stat + pls.maxHealth);
-        float hpRegen = EvaluateItemsStat(_player._playerStats.hpRegen, (pls, stat) => stat + pls.healthRegen);
+        float maxHp = EvaluateItemsStat(_player.PlayerStats.maxHp, (pls, stat) => stat + pls.maxHealth);
+        float hpRegen = EvaluateItemsStat(_player.PlayerStats.hpRegen, (pls, stat) => stat + pls.healthRegen);
         _player.SetHealthStats(maxHp, hpRegen);
     }
 
-    class WeaponRuntimeInfo
+    public class WeaponRuntimeInfo
     {
         // public WeaponInfo weaponInfo;
         public BaseWeapon weaponInstance;
